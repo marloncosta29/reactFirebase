@@ -1,0 +1,16 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+body{
+  background: #FAFAFA;
+  font: 14px sans-serif;
+  -webkit-font-smoothing: antialiazed !important; 
+}
