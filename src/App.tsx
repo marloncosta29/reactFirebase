@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/Home'
 import Header from './components/Header'
-
+import Login from './components/Login'
 import firebase from './firebase'
 
 import './App.css'
@@ -28,6 +28,7 @@ export default class App extends React.Component<Props, State> {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login}/>
           </Switch>
         </BrowserRouter>
         :
