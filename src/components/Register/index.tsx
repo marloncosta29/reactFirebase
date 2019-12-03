@@ -18,9 +18,20 @@ class Register extends React.Component<Props, State> {
       senha: ''
     }
     this.register = this.register.bind(this)
+    this.onRegister = this.onRegister.bind(this)
   }
   register(e: any) {
     e.preventDefault()
+    this.onRegister()
+  }
+  onRegister = async() => {
+    try {
+      await firebase.registrar(this.state.email, this.state.senha, this.state.nome)
+      this.props.history.replace('/dashboard')
+    } catch (error) {
+      alert(error.message);      
+    }
+
   }
   render() {
     return (

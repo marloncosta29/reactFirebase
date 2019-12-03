@@ -30,6 +30,9 @@ class Firebase {
       return app.database().ref('usuarios').child(currentUser.uid).set({ nome: nome })
     }
   }
+  logout(){
+    return app.auth().signOut();
+  }
   isInicialized(): any {
     return new Promise(resolve => {
       app.auth().onAuthStateChanged(resolve)
@@ -39,6 +42,18 @@ class Firebase {
     const current = app.auth().currentUser
     console.log(current)
     return current && current.email
+  }
+  async getUserName(callback: any){
+    const currentUser = app.auth().currentUser;
+    if(!currentUser){
+      return;
+    }
+    const uid = currentUser.uid;
+    await app.database()
+      .ref('usuarios')
+      .child(uid)
+      .once('value')
+      .then(callback);
   }
 }
 
