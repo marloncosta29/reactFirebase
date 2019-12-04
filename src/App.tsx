@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import Register from './components/Register'
+import New from './components/New'
 import firebase from './firebase'
 
 import './App.css'
@@ -30,9 +31,10 @@ export default class App extends React.Component<Props, State> {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/dashboard/new" component={New} />
 
           </Switch>
         </BrowserRouter>
