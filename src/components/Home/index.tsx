@@ -33,7 +33,8 @@ export default class Home extends React.Component<Props, State> {
           autor: childItem.val().autor
         })
       })
-      this.setState({ posts })
+
+      this.setState({ posts: posts.reverse() })
 
     })
   }

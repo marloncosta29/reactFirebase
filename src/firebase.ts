@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import 'firebase/storage'
 
 let firebaseConfig = {
   apiKey: "AIzaSyDD3T2PCuQ9N0F1DsHxQ4u6r8s0MPyDBG0",
@@ -16,9 +17,11 @@ let firebaseConfig = {
 
 class Firebase {
   app: app.database.Database
+  storage: app.storage.Storage
   constructor() {
     app.initializeApp(firebaseConfig);
     this.app = app.database()
+    this.storage = app.storage()
   }
   login(email: string, password: string) {
     return app.auth().signInWithEmailAndPassword(email, password)
@@ -30,7 +33,7 @@ class Firebase {
       return app.database().ref('usuarios').child(currentUser.uid).set({ nome: nome })
     }
   }
-  logout(){
+  logout() {
     return app.auth().signOut();
   }
   isInicialized(): any {
@@ -43,9 +46,14 @@ class Firebase {
     console.log(current)
     return current && current.email
   }
-  async getUserName(callback: any){
+  getCurrentUid() {
+    const current = app.auth().currentUser
+    console.log(current)
+    return current && current.uid
+  }
+  async getUserName(callback: any) {
     const currentUser = app.auth().currentUser;
-    if(!currentUser){
+    if (!currentUser) {
       return;
     }
     const uid = currentUser.uid;
